@@ -20,10 +20,24 @@ declare namespace betterAjvErrors {
 
   export interface IBetterAjvErrors {
     (
-      schema: any,
+      schema: object,
       data: any,
       errors?: ErrorObject[] | null,
-      options?: betterAjvErrors.IInputOptions
-    ): betterAjvErrors.IOutputError[] | void;
+      options?: IInputOptions & {format?: 'cli'}
+    ): string;
+
+    (
+      schema: object,
+      data: any,
+      errors?: ErrorObject[] | null,
+      options?: IInputOptions & {format: 'js'}
+    ): IOutputError[];
+
+    (
+      schema: object,
+      data: any,
+      errors?: ErrorObject[] | null,
+      options?: IInputOptions
+    ): IOutputError[] | string;
   }
 }
